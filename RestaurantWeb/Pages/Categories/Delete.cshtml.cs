@@ -5,30 +5,27 @@ using RestaurantWeb.Models;
 
 namespace RestaurantWeb.Pages.Categories
 {
-    public class CreateModel : PageModel
+    public class DeleteModel : PageModel
     {
         [BindProperty] public Category category { get; set; }
 
         private readonly RestaurantDBContext _restaurantDBContext;
-        public CreateModel(RestaurantDBContext restaurantDBContext)
+        public DeleteModel(RestaurantDBContext restaurantDBContext)
         {
             _restaurantDBContext = restaurantDBContext;
         }
-
-        public void OnGet()
+        public void OnGet(int id)
         {
+            category = _restaurantDBContext.Categories.Single(c => c.Id == id);
         }
         public async Task<IActionResult> OnPost()
         {
-            if (category.Name == category.DisplayOrder.ToString())
+            var reponseCat = await _restaurantDBContext.Categories.FindAsync(category.Id);
+            if (reponseCat != null)
             {
-                ModelState.AddModelError("match", "The DisplayOrder cannot match the key name.");
-            }
-            if (ModelState.IsValid)
-            {
-                await _restaurantDBContext.Categories.AddAsync(category);
+                _restaurantDBContext.Categories.Remove(reponseCat);
                 await _restaurantDBContext.SaveChangesAsync();
-                TempData["Success"] = "Category create successfully!";
+                TempData["Success"] = "Category Deleted Successfully.";
                 return RedirectToPage("Index");
             }
             else

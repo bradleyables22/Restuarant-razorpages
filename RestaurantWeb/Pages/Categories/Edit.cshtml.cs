@@ -5,18 +5,18 @@ using RestaurantWeb.Models;
 
 namespace RestaurantWeb.Pages.Categories
 {
-    public class CreateModel : PageModel
+    public class EditModel : PageModel
     {
         [BindProperty] public Category category { get; set; }
 
         private readonly RestaurantDBContext _restaurantDBContext;
-        public CreateModel(RestaurantDBContext restaurantDBContext)
+        public EditModel(RestaurantDBContext restaurantDBContext)
         {
             _restaurantDBContext = restaurantDBContext;
         }
-
-        public void OnGet()
+        public void OnGet(int id)
         {
+            category = _restaurantDBContext.Categories.Single(c=>c.Id==id);
         }
         public async Task<IActionResult> OnPost()
         {
@@ -26,9 +26,9 @@ namespace RestaurantWeb.Pages.Categories
             }
             if (ModelState.IsValid)
             {
-                await _restaurantDBContext.Categories.AddAsync(category);
+                _restaurantDBContext.Categories.Update(category);
                 await _restaurantDBContext.SaveChangesAsync();
-                TempData["Success"] = "Category create successfully!";
+                TempData["Success"] = "Edit Successful";
                 return RedirectToPage("Index");
             }
             else
