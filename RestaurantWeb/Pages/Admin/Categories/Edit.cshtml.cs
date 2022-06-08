@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using RestaurantWeb.Data;
 using RestaurantWeb.Models;
 
-namespace RestaurantWeb.Pages.Categories
+namespace RestaurantWeb.Pages.Admin.Categories
 {
     public class EditModel : PageModel
     {

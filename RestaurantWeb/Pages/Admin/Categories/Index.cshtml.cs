@@ -3,7 +3,7 @@ using RestaurantWeb.Data;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RestaurantWeb.Models;
 
-namespace RestaurantWeb.Pages.Categories
+namespace RestaurantWeb.Pages.Admin.Categories
 {
     public class IndexModel : PageModel
     {

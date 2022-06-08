@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RestaurantWeb.Data;
 
@@ -10,9 +11,10 @@ using RestaurantWeb.Data;
 namespace RestaurantWeb.Migrations
 {
     [DbContext(typeof(RestaurantDBContext))]
-    partial class RestaurantDBContextModelSnapshot : ModelSnapshot
+    [Migration("20220608134610_AddFoodtype2db")]
+    partial class AddFoodtype2db
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

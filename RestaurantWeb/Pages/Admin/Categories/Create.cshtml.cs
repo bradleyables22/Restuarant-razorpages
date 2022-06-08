@@ -2,18 +2,17 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RestaurantWeb.Data;
 using RestaurantWeb.Models;
+using RestaurantWeb.Repository.IRepository;
 
-namespace RestaurantWeb.Pages.Categories
+namespace RestaurantWeb.Pages.Admin.Categories
 {
     public class CreateModel : PageModel
     {
+        
+        private readonly ICategoryRepository _catRep;
         [BindProperty] public Category category { get; set; }
 
-        private readonly RestaurantDBContext _restaurantDBContext;
-        public CreateModel(RestaurantDBContext restaurantDBContext)
-        {
-            _restaurantDBContext = restaurantDBContext;
-        }
+        public CreateModel(ICategoryRepository catRep) => _catRep = catRep;
 
         public void OnGet()
         {

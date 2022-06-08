@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RestaurantWeb.Models;
 
-namespace RestaurantWeb.Data
+namespace Restuarant.DataAccess
 {
     public class RestaurantDBContext : DbContext
     {
@@ -10,6 +10,5 @@ namespace RestaurantWeb.Data
 
         }
         public DbSet<Category> Categories { get; set; }
-        public DbSet<FoodType> FoodTypes { get; set; }
     }
 }
